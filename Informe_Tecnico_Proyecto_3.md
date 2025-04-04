@@ -477,14 +477,13 @@ El enlace : [http://web.pagos/donate.php?amount=100&receiver=attacker](http://we
 
 **a)** Editamos a un jugador para conseguir, en el listado, aparezca debajo del nombre su equipo y antes de la pestaña de mostrar y añadir comentarios un botón llamado *Profile* que corresponda a un formulario que envía a cualquiera que haga clic a la dirección de web.pagos.
 
+![Imagen](images/image-18.png)
 
-![[Pasted image 20250127131555.png]]
-
-![[Pasted image 20250127131641.png]]
+![Imagen](images/image-19.png)
 
 **b)** Ahora, en vez del botón, creamos un comentario que sirve para el mismo propósito pero sin que sea sospechoso sobre un jugador en `show\_comments.php`.
 
-![[Pasted image 20250127132104.png]]
+![Imagen](images/image-20.png)
 
 **c)** Para que el ataque tenga éxito, se debe cumplir que el usuario víctima esté autenticado en web.pagos al momento de cargar el mensaje malicioso o hacer clic en el botón, además que web.pagos no debe implementar protección contra ataques CSRF, los parámetros enviados en la URL maliciosa deben ser válidos y procesables y no se debe requerir confirmación adicional para completar la transacción.
 
