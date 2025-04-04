@@ -4,9 +4,10 @@
 
 **a)** Escribimos comillas dobles en el campo del usuario y nos aparece el siguiente error.
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-1.png)
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image.png)
+![Imagen](images/image-1.png)
+![Imagen](images/image.png)
+
 
 Lo cual nos permite obtener el nombre de los campos de tabla users:
 
@@ -39,41 +40,41 @@ Haciendo uso de la aplicación de **burpsuite pro** realizaremos este ataque.
 
 Capturamos las peticiones HTTP de la página y abrimos el explorador de **Burpsuite**.
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-2.png)
+![Imagen](images/image-2.png)
 
 Le damos a *Forward* y escribimos algo de prueba el formulario para poder verlo en la petición HTTP.
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-3.png)
+![Imagen](images/image-3.png)
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-4.png)
+![Imagen](images/image-4.png)
 
 Hacemos clic derecho sobre la petición HTTP que hemos capturado y le damos a *Send to Intruder*.
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-5.png)
+![Imagen](images/image-5.png)
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-6.png)
+![Imagen](images/image-6.png)
 
 Seleccionamos Cluster Bomb Attack para poder iterar entre las distintas opciones del campo de usuario y la contraseña.
 
 Además, asignamos la posición donde se encuentran dándole a *Auto*.
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-7.png)
+![Imagen](images/image-7.png)
 
 Para el nombre de usuario, cargamos un diccionario del propio **Burpsuite**.
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-8.png)
+![Imagen](images/image-8.png)
 
 Por otro lado, para la contraseña, utilizamos el diccionario que se nos proporciona.
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-9.png)
+![Imagen](images/image-9.png)
 
 Finalmente, hacemos clic en *Start Attack*.
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-10.png)
+![Imagen](images/image-10.png)
 
 Ordenamos por el tamaño de la respuesta de la petición HTTP y vemos que el usuario *luis* con contraseña *1234* es el que nos da resultados.
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-11.png)
+![Imagen](images/image-11.png)
 
 **c)** Debido a que en el fichero auth.php de la página se está utilizando la función *SQLite3::escapeString()* para escapar las entradas de usuario, existe una vulnerabilidad en el código.
 
@@ -117,9 +118,9 @@ Si las contraseñas coinciden, la autenticación es exitosa y se guarda el *user
 
 d) Ahora, accedemos con el usuario *luis* con contraseña *1234* y accedemos al archivo *add_comment.php~" el cual es vulnerable; la siguiente sentencia insert de SQL del archivo puede ser vulnerada fácilmente:
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-12.png)
+![Imagen](images/image-12.png)
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-13.png)
+![Imagen](images/image-13.png)
 
 Nos dirigimos a add comment y añadimos el siguiente payload en la URL de añadir un comentario a un jugador.
 
@@ -129,9 +130,9 @@ Nos dirigimos a add comment y añadimos el siguiente payload en la URL de añadi
 - El 4 es el usuario con el cual escribimos el comentario.
 - 'probando' es donde vamos a escribir el comentario.
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-14.png)
+![Imagen](images/image-14.png)
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-15.png)
+![Imagen](images/image-15.png)
 
 Esta vulnerabilidad es otra **inyección SQL** sobre la URL de una web, que permite al atacante insertar o manipular comandos SQL como parámetros de URL. En este caso, el atacante puede explotar el parámetro id en la URL para inyectar código malicioso.
 
@@ -180,11 +181,11 @@ Introducimos el siguiente script de JavaScript en el body del mensaje.
 
     <script>alert('ALERTA');</script>
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-16.png)
+![Imagen](images/image-16.png)
 
 De esta forma, cada vez que alguien entre en la sección para mostrar los comentarios le aparecerá el siguiente alert:
 
-![alt text](Hacking_Etico/Proyecto_3/Entrega/images/image-17.png)
+![Imagen](images/image-17.png)
 
 **b)** El *\&amp;* que aparece en la URL http://www.donate.co/?amount=100&destination=ACMEScouting/
  es el símbolo de "ampersand", que se utiliza en las URLs para separar los parámetros de las consultas en las peticiones GET de la página web.
@@ -475,6 +476,7 @@ Para reducir la probabilidad de ataques, podemos implementar medidas como:
 El enlace : [http://web.pagos/donate.php?amount=100&receiver=attacker](http://web.pagos/donate.php?amount=100&receiver=attacker es malicioso y al hacer clic, enviará 100€ al usuario ' attacker'
 
 **a)** Editamos a un jugador para conseguir, en el listado, aparezca debajo del nombre su equipo y antes de la pestaña de mostrar y añadir comentarios un botón llamado *Profile* que corresponda a un formulario que envía a cualquiera que haga clic a la dirección de web.pagos.
+
 
 ![[Pasted image 20250127131555.png]]
 
